@@ -1,12 +1,12 @@
-package com.paticasprototype.paticas.infrastructure;
+package com.paticasprototype.paticas.infrastructure.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PrototypeController {
+public class TestController {
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String index() {
         return "YESSSSSSSSSSSSSSSSSSSSSSSSSSSS!";
     }

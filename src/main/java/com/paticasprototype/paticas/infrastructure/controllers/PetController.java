@@ -28,20 +28,23 @@ public class PetController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pet> getPetById(@PathVariable Long id) {
+    public ResponseEntity<PetDTO> getPetById(@PathVariable Long id) {
         Optional<Pet> pet = petService.getPetById(id);
-        return pet.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return pet.map(p -> ResponseEntity.ok(PetMapper.toDTO(p)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Pet createPet(@RequestBody Pet pet) {
-        return petService.createPet(pet);
+    public PetDTO createPet(@RequestBody Pet pet) {
+        Pet createdPet = petService.createPet(pet);
+        return PetMapper.toDTO(createdPet);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pet> updatePet(@PathVariable Long id, @RequestBody Pet petDetails) {
+    public ResponseEntity<PetDTO> updatePet(@PathVariable Long id, @RequestBody Pet petDetails) {
         Optional<Pet> updatedPet = petService.updatePet(id, petDetails);
-        return updatedPet.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return updatedPet.map(p -> ResponseEntity.ok(PetMapper.toDTO(p)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

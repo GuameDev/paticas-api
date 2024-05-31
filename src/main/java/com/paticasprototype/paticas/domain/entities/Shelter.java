@@ -18,6 +18,9 @@ public class Shelter {
     @JsonIgnore
     private List<Pet> pets;
 
+    @OneToMany(mappedBy = "shelter", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Volunteer> volunteers;
     // Getters and Setters
     public Long getId() {
         return id;

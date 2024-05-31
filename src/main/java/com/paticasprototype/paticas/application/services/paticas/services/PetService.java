@@ -1,4 +1,4 @@
-package com.paticasprototype.paticas.application.services.pets.services;
+package com.paticasprototype.paticas.application.services.paticas.services;
 
 import com.paticasprototype.paticas.domain.entities.Pet;
 import com.paticasprototype.paticas.domain.usecase.PetUseCase;
@@ -28,7 +28,7 @@ public class PetService {
     }
 
     public Optional<Pet> updatePet(Long id, Pet petDetails) {
-        return petUseCase.updatePet(id, petDetails);
+        return petUseCase.updatePatica(id, petDetails);
     }
 
     public boolean deletePet(Long id) {

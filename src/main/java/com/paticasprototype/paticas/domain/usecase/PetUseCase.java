@@ -25,23 +25,25 @@ public class PetUseCase {
         return petRepository.save(pet);
     }
 
-    public Optional<Pet> updatePet(Long id, Pet petDetails) {
-        return petRepository.findById(id).map(pet -> {
+    public Optional<Pet> updatePatica(Long id, Pet petDetails) {
+        return petRepository.findById(id).map(patica -> {
+            patica.setProfileImage(petDetails.getProfileImage());
+            patica.setImageCarousel1(petDetails.getImageCarousel1());
+            patica.setImageCarousel2(petDetails.getImageCarousel2());
+            patica.setImageCarousel3(petDetails.getImageCarousel3());
+            patica.setName(petDetails.getName());
+            patica.setLocation(petDetails.getLocation());
+            patica.setGender(petDetails.getGender());
+            patica.setSize(petDetails.getSize());
+            patica.setBirthDate(petDetails.getBirthDate());
+            patica.setSpecies(petDetails.getSpecies());
+            patica.setDescription(petDetails.getDescription());
+            patica.setGoodWithKids(petDetails.isGoodWithKids());
+            patica.setGoodWithDogs(petDetails.isGoodWithDogs());
+            patica.setGoodWithCats(petDetails.isGoodWithCats());
+            patica.setShelter(petDetails.getShelter());
 
-            pet.setName(petDetails.getName());
-            pet.setGendre(petDetails.getGendre());
-            pet.setSpecies(petDetails.getSpecies());
-            pet.setRace(petDetails.getRace());
-            pet.setSize(petDetails.getSize());
-            pet.setBirthDate(petDetails.getBirthDate());
-            pet.setDescription(petDetails.getDescription());
-            pet.setPhoneNumber(petDetails.getPhoneNumber());
-            pet.setShelter(petDetails.getShelter());
-            pet.setPathImagesCarousel(petDetails.getPathImagesCarousel());
-            pet.setPathCardImage(petDetails.getPathCardImage());
-            pet.setShelter(petDetails.getShelter());
-
-            return petRepository.save(pet);
+            return petRepository.save(patica);
         });
     }
 

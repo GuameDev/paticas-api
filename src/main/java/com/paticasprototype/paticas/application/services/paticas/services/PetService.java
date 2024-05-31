@@ -1,7 +1,10 @@
 package com.paticasprototype.paticas.application.services.paticas.services;
 
+import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
 import com.paticasprototype.paticas.domain.entities.Pet;
 import com.paticasprototype.paticas.domain.usecase.PetUseCase;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +26,7 @@ public class PetService {
         return petUseCase.getPetById(id);
     }
 
-    public Pet createPet(Pet pet) {
+    public Pet createPet(PetDTO pet) {
         return petUseCase.createPet(pet);
     }
 
@@ -33,5 +36,9 @@ public class PetService {
 
     public boolean deletePet(Long id) {
         return petUseCase.deletePet(id);
+    }
+
+    public Page<PetDTO> getPaticasByShelterId(Long shelterId, Pageable pageable) {
+        return petUseCase.getPaticasByShelterId(shelterId,pageable);
     }
 }

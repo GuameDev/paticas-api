@@ -1,7 +1,14 @@
 package com.paticasprototype.paticas.domain.usecase;
 
+import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
+import com.paticasprototype.paticas.application.services.paticas.mapper.PetMapper;
+import com.paticasprototype.paticas.application.services.shelters.dtos.ShelterDTO;
+import com.paticasprototype.paticas.application.services.shelters.mapper.ShelterMapper;
 import com.paticasprototype.paticas.domain.entities.Pet;
+import com.paticasprototype.paticas.domain.entities.Shelter;
 import com.paticasprototype.paticas.domain.repositories.PetRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +28,8 @@ public class PetUseCase {
         return petRepository.findById(id);
     }
 
-    public Pet createPet(Pet pet) {
+    public Pet createPet(PetDTO petDto) {
+        Pet pet = new PetMapper().toEntity(petDto);
         return petRepository.save(pet);
     }
 
@@ -52,5 +60,9 @@ public class PetUseCase {
             petRepository.deleteById(id);
             return true;
         }).orElse(false);
+    }
+
+    public Page<PetDTO> getPaticasByShelterId(Long shelterId, Pageable pageable) {
+        return petRepository.findByShelterId(shelterId, pageable).map(PetMapper::toDTO);
     }
 }

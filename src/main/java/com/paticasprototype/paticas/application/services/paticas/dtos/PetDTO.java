@@ -19,9 +19,11 @@ public class PetDTO {
     private boolean goodWithKids;
     private boolean goodWithDogs;
     private boolean goodWithCats;
-    private ShelterDTO shelter;
+    private Long shelterId;
+
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -142,11 +144,11 @@ public class PetDTO {
         this.goodWithCats = goodWithCats;
     }
 
-    public ShelterDTO getShelter() {
-        return shelter;
+    public Long getShelterId() {
+        return shelterId;
     }
 
-    public void setShelter(ShelterDTO shelter) {
-        this.shelter = shelter;
+    public void setShelterId(Long shelterId) {
+        this.shelterId = shelterId;
     }
 }

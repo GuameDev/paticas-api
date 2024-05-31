@@ -1,14 +1,10 @@
-package com.paticasprototype.paticas.domain.entities;
+package com.paticasprototype.paticas.application.services.paticas.dtos;
+import com.paticasprototype.paticas.application.services.shelters.dtos.ShelterDTO;
 
-import jakarta.persistence.*;
 import java.util.Date;
 
-@Entity
-public class Pet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PetDTO {
     private Long id;
-
     private String profileImage;
     private String imageCarousel1;
     private String imageCarousel2;
@@ -17,17 +13,13 @@ public class Pet {
     private String location;
     private String gender;
     private int size;
-    @Temporal(TemporalType.DATE)
     private Date birthDate;
     private String species;
     private String description;
     private boolean goodWithKids;
     private boolean goodWithDogs;
     private boolean goodWithCats;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shelter_id")
-    private Shelter shelter;
+    private ShelterDTO shelter;
 
     // Getters and Setters
     public Long getId() {
@@ -150,11 +142,11 @@ public class Pet {
         this.goodWithCats = goodWithCats;
     }
 
-    public Shelter getShelter() {
+    public ShelterDTO getShelter() {
         return shelter;
     }
 
-    public void setShelter(Shelter shelter) {
+    public void setShelter(ShelterDTO shelter) {
         this.shelter = shelter;
     }
 }

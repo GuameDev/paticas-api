@@ -1,6 +1,6 @@
 package com.paticasprototype.paticas.domain.constants;
 
-public enum Gendre{
+public enum Gender {
     FEMALE,
     MALE,
     NON_BINARY,

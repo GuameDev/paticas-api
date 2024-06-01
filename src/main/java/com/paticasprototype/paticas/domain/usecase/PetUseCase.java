@@ -2,6 +2,7 @@ package com.paticasprototype.paticas.domain.usecase;
 
 import com.paticasprototype.paticas.application.services.paticas.dtos.CreatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
+import com.paticasprototype.paticas.application.services.paticas.dtos.UpdatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.mapper.CreatePetMapper;
 import com.paticasprototype.paticas.application.services.paticas.mapper.PetMapper;
 import com.paticasprototype.paticas.application.services.shelters.dtos.ShelterDTO;
@@ -36,25 +37,14 @@ public class PetUseCase {
         return petRepository.save(pet);
     }
 
-    public Optional<Pet> updatePatica(Long id, Pet petDetails) {
-        return petRepository.findById(id).map(patica -> {
-            patica.setProfileImage(petDetails.getProfileImage());
-            patica.setImageCarousel1(petDetails.getImageCarousel1());
-            patica.setImageCarousel2(petDetails.getImageCarousel2());
-            patica.setImageCarousel3(petDetails.getImageCarousel3());
-            patica.setName(petDetails.getName());
-            patica.setLocation(petDetails.getLocation());
-            patica.setGender(petDetails.getGender());
-            patica.setSize(petDetails.getSize());
-            patica.setBirthDate(petDetails.getBirthDate());
-            patica.setSpecies(petDetails.getSpecies());
-            patica.setDescription(petDetails.getDescription());
-            patica.setGoodWithKids(petDetails.isGoodWithKids());
-            patica.setGoodWithDogs(petDetails.isGoodWithDogs());
-            patica.setGoodWithCats(petDetails.isGoodWithCats());
-            patica.setShelter(petDetails.getShelter());
-
-            return petRepository.save(patica);
+    public Optional<Pet> updatePet(Long id, UpdatePetRequest petDetails) throws IOException {
+        return petRepository.findById(id).map(existingPet -> {
+            try {
+                Pet updatedPet = new CreatePetMapper().updateEntity(existingPet, petDetails);
+                return petRepository.save(updatedPet);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 

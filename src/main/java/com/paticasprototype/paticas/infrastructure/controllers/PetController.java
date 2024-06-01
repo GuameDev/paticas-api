@@ -2,6 +2,7 @@ package com.paticasprototype.paticas.infrastructure.controllers;
 
 import com.paticasprototype.paticas.application.services.paticas.dtos.CreatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
+import com.paticasprototype.paticas.application.services.paticas.dtos.UpdatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.mapper.PetMapper;
 import com.paticasprototype.paticas.application.services.paticas.services.PetService;
 import com.paticasprototype.paticas.domain.entities.Pet;
@@ -45,8 +46,9 @@ public class PetController {
         return PetMapper.toDTO(createdPet);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PetDTO> updatePet(@PathVariable Long id, @RequestBody Pet petDetails) {
+
+    @PutMapping(value = "/{id}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<PetDTO> updatePet(@PathVariable Long id, @ModelAttribute UpdatePetRequest petDetails) throws IOException {
         Optional<Pet> updatedPet = petService.updatePet(id, petDetails);
         return updatedPet.map(p -> ResponseEntity.ok(PetMapper.toDTO(p)))
                 .orElseGet(() -> ResponseEntity.notFound().build());

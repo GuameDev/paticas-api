@@ -2,6 +2,7 @@ package com.paticasprototype.paticas.application.services.paticas.services;
 
 import com.paticasprototype.paticas.application.services.paticas.dtos.CreatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
+import com.paticasprototype.paticas.application.services.paticas.dtos.UpdatePetRequest;
 import com.paticasprototype.paticas.domain.entities.Pet;
 import com.paticasprototype.paticas.domain.usecase.PetUseCase;
 import org.springframework.data.domain.Page;
@@ -32,8 +33,8 @@ public class PetService {
         return petUseCase.createPet(pet);
     }
 
-    public Optional<Pet> updatePet(Long id, Pet petDetails) {
-        return petUseCase.updatePatica(id, petDetails);
+    public Optional<Pet> updatePet(Long id, UpdatePetRequest petDetails) throws IOException {
+        return petUseCase.updatePet(id, petDetails);
     }
 
     public boolean deletePet(Long id) {

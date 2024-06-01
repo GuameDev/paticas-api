@@ -1,6 +1,7 @@
 package com.paticasprototype.paticas.application.services.paticas.mapper;
 
 import com.paticasprototype.paticas.application.services.paticas.dtos.CreatePetRequest;
+import com.paticasprototype.paticas.application.services.paticas.dtos.UpdatePetRequest;
 import com.paticasprototype.paticas.domain.entities.Pet;
 import com.paticasprototype.paticas.domain.entities.Shelter;
 import com.paticasprototype.paticas.infrastructure.config.ConfigConstants;
@@ -55,5 +56,37 @@ private ConfigConstants config = new ConfigConstants();
         shelter.setId(dto.getShelterId());
         patica.setShelter(shelter);
         return patica;
+    }
+    public Pet updateEntity(Pet pet, UpdatePetRequest dto) throws IOException {
+
+        if (dto.getProfileImage() != null && !dto.getProfileImage().isEmpty()) {
+            pet.setProfileImage(saveFile(dto.getProfileImage()));
+        }
+        if (dto.getImageCarousel1() != null && !dto.getImageCarousel1().isEmpty()) {
+            pet.setImageCarousel1(saveFile(dto.getImageCarousel1()));
+        }
+        if (dto.getImageCarousel2() != null && !dto.getImageCarousel2().isEmpty()) {
+            pet.setImageCarousel2(saveFile(dto.getImageCarousel2()));
+        }
+        if (dto.getImageCarousel3() != null && !dto.getImageCarousel3().isEmpty()) {
+            pet.setImageCarousel3(saveFile(dto.getImageCarousel3()));
+        }
+
+        pet.setName(dto.getName());
+        pet.setLocation(dto.getLocation());
+        pet.setGender(dto.getGender());
+        pet.setSize(dto.getSize());
+        pet.setBirthDate(dto.getBirthDate());
+        pet.setSpecies(dto.getSpecies());
+        pet.setDescription(dto.getDescription());
+        pet.setGoodWithKids(dto.isGoodWithKids());
+        pet.setGoodWithDogs(dto.isGoodWithDogs());
+        pet.setGoodWithCats(dto.isGoodWithCats());
+
+        Shelter shelter = new Shelter();
+        shelter.setId(dto.getShelterId());
+        pet.setShelter(shelter);
+
+        return pet;
     }
 }

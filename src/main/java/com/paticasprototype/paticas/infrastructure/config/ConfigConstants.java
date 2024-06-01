@@ -8,6 +8,6 @@ public class ConfigConstants {
         return "C:/uploads/";
     }
     public String getBaseUrl() {
-        return " http://localhost:8081/";
+        return "http://localhost:8081/";
     }
 }

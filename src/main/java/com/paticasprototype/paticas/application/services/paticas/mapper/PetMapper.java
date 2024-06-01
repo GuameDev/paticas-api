@@ -1,11 +1,14 @@
 package com.paticasprototype.paticas.application.services.paticas.mapper;
 
+import com.paticasprototype.paticas.application.services.paticas.dtos.CreatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
 import com.paticasprototype.paticas.application.services.shelters.dtos.ShelterDTO;
 import com.paticasprototype.paticas.domain.entities.Pet;
 import com.paticasprototype.paticas.domain.entities.Shelter;
 import com.paticasprototype.paticas.domain.entities.Shelter;
+import com.paticasprototype.paticas.infrastructure.config.ConfigConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,10 +17,10 @@ public class PetMapper {
     public static PetDTO toDTO(Pet pet) {
         PetDTO dto = new PetDTO();
         dto.setId(pet.getId());
-        dto.setProfileImage(pet.getProfileImage());
-        dto.setImageCarousel1(pet.getImageCarousel1());
-        dto.setImageCarousel2(pet.getImageCarousel2());
-        dto.setImageCarousel3(pet.getImageCarousel3());
+        dto.setProfileImage(toUrl(pet.getProfileImage()));
+        dto.setImageCarousel1(toUrl(pet.getImageCarousel1()));
+        dto.setImageCarousel2(toUrl(pet.getImageCarousel2()));
+        dto.setImageCarousel3(toUrl(pet.getImageCarousel3()));
         dto.setName(pet.getName());
         dto.setLocation(pet.getLocation());
         dto.setGender(pet.getGender());
@@ -54,5 +57,11 @@ public class PetMapper {
         shelter.setId(dto.getShelterId());
         patica.setShelter(shelter);
         return patica;
+    }
+
+
+    private static String toUrl(String filePath) {
+         ConfigConstants config = new ConfigConstants();
+        return filePath != null ? config.getBaseUrl()+"uploads/" + filePath : null;
     }
 }

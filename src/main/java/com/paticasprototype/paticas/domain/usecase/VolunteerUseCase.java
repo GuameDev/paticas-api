@@ -1,7 +1,9 @@
 package com.paticasprototype.paticas.domain.usecase;
 
 import com.paticasprototype.paticas.application.services.paticas.mapper.PetMapper;
+import com.paticasprototype.paticas.application.services.volunteers.dtos.CreateVolunteerRequest;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
+import com.paticasprototype.paticas.application.services.volunteers.mapper.CreateVolunteerMapper;
 import com.paticasprototype.paticas.application.services.volunteers.mapper.VolunteerMapper;
 import com.paticasprototype.paticas.domain.entities.Shelter;
 import com.paticasprototype.paticas.domain.entities.Volunteer;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,8 +38,9 @@ public class VolunteerUseCase {
         return volunteerRepository.findById(id).map(VolunteerMapper::toDTO);
     }
 
-    public VolunteerDTO createVolunteer(VolunteerDTO volunteerDTO) {
-        Volunteer volunteer = VolunteerMapper.toEntity(volunteerDTO);
+    public VolunteerDTO createVolunteer(CreateVolunteerRequest volunteerDTO) throws IOException {
+        CreateVolunteerMapper volunteerMapper = new CreateVolunteerMapper();
+        Volunteer volunteer = volunteerMapper.toEntity(volunteerDTO);
         Shelter shelter = shelterRepository.findById(volunteerDTO.getShelterId())
                 .orElseThrow(() -> new RuntimeException("Shelter not found"));
         volunteer.setShelter(shelter);

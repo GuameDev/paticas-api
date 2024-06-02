@@ -1,5 +1,6 @@
 package com.paticasprototype.paticas.application.services.volunteers.mapper;
 
+import com.paticasprototype.paticas.application.helpers.FileSaver;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
 import com.paticasprototype.paticas.domain.entities.Volunteer;
 
@@ -8,7 +9,7 @@ public class VolunteerMapper {
     public static VolunteerDTO toDTO(Volunteer volunteer) {
         VolunteerDTO dto = new VolunteerDTO();
         dto.setId(volunteer.getId());
-        dto.setProfileImage(volunteer.getProfileImage());
+        dto.setProfileImage(FileSaver.toUrl(volunteer.getProfileImage()));
         dto.setFullName(volunteer.getFullName());
         dto.setPhone(volunteer.getPhone());
         dto.setEmail(volunteer.getEmail());

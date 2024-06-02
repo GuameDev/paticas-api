@@ -1,13 +1,16 @@
 package com.paticasprototype.paticas.infrastructure.controllers;
 
 import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
+import com.paticasprototype.paticas.application.services.volunteers.dtos.CreateVolunteerRequest;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
 import com.paticasprototype.paticas.application.services.volunteers.services.VolunteerService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +35,8 @@ public class VolunteerController {
         return volunteer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public VolunteerDTO createVolunteer(@RequestBody VolunteerDTO volunteerDTO) {
+    @PostMapping( consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public VolunteerDTO createVolunteer(@ModelAttribute CreateVolunteerRequest volunteerDTO) throws IOException {
         return volunteerService.createVolunteer(volunteerDTO);
     }
 

@@ -1,5 +1,6 @@
 package com.paticasprototype.paticas.application.services.paticas.mapper;
 
+import com.paticasprototype.paticas.application.helpers.FileSaver;
 import com.paticasprototype.paticas.application.services.paticas.dtos.CreatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.dtos.GetPetByIdResponse;
 import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
@@ -16,13 +17,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class PetMapper {
 
+
+
     public static PetDTO toDTO(Pet pet) {
+
+
         PetDTO dto = new PetDTO();
         dto.setId(pet.getId());
-        dto.setProfileImage(toUrl(pet.getProfileImage()));
-        dto.setImageCarousel1(toUrl(pet.getImageCarousel1()));
-        dto.setImageCarousel2(toUrl(pet.getImageCarousel2()));
-        dto.setImageCarousel3(toUrl(pet.getImageCarousel3()));
+        dto.setProfileImage(FileSaver.toUrl(pet.getProfileImage()));
+        dto.setImageCarousel1(FileSaver.toUrl(pet.getImageCarousel1()));
+        dto.setImageCarousel2(FileSaver.toUrl(pet.getImageCarousel2()));
+        dto.setImageCarousel3(FileSaver.toUrl(pet.getImageCarousel3()));
         dto.setName(pet.getName());
         dto.setLocation(pet.getLocation());
         dto.setGender(pet.getGender());
@@ -62,18 +67,15 @@ public class PetMapper {
     }
 
 
-    private static String toUrl(String filePath) {
-         ConfigConstants config = new ConfigConstants();
-        return filePath != null ? config.getBaseUrl()+"uploads/" + filePath : null;
-    }
+
 
     public static GetPetByIdResponse toDetailDTO(Pet pet) {
         GetPetByIdResponse dto = new GetPetByIdResponse();
         dto.setId(pet.getId());
-        dto.setProfileImage(toUrl(pet.getProfileImage()));
-        dto.setImageCarousel1(toUrl(pet.getImageCarousel1()));
-        dto.setImageCarousel2(toUrl(pet.getImageCarousel2()));
-        dto.setImageCarousel3(toUrl(pet.getImageCarousel3()));
+        dto.setProfileImage(FileSaver.toUrl(pet.getProfileImage()));
+        dto.setImageCarousel1(FileSaver.toUrl(pet.getImageCarousel1()));
+        dto.setImageCarousel2(FileSaver.toUrl(pet.getImageCarousel2()));
+        dto.setImageCarousel3(FileSaver.toUrl(pet.getImageCarousel3()));
         dto.setName(pet.getName());
         dto.setLocation(pet.getLocation());
         dto.setGender(pet.getGender());

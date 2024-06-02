@@ -1,7 +1,10 @@
 package com.paticasprototype.paticas.infrastructure.controllers;
 
+import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
 import com.paticasprototype.paticas.application.services.volunteers.services.VolunteerService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +47,11 @@ public class VolunteerController {
     public ResponseEntity<Void> deleteVolunteer(@PathVariable Long id) {
         boolean isDeleted = volunteerService.deleteVolunteer(id);
         return isDeleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+    @GetMapping("/shelter/{shelterId}")
+    public ResponseEntity<Page<VolunteerDTO>> getVolunteersByShelterId(
+            @PathVariable Long shelterId,
+            Pageable pageable) {
+        return ResponseEntity.ok(volunteerService.getVolunteersByShelterId(shelterId, pageable));
     }
 }

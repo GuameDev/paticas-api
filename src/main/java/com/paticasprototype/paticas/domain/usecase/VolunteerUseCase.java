@@ -1,5 +1,6 @@
 package com.paticasprototype.paticas.domain.usecase;
 
+import com.paticasprototype.paticas.application.services.paticas.mapper.PetMapper;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
 import com.paticasprototype.paticas.application.services.volunteers.mapper.VolunteerMapper;
 import com.paticasprototype.paticas.domain.entities.Shelter;
@@ -7,6 +8,8 @@ import com.paticasprototype.paticas.domain.entities.Volunteer;
 import com.paticasprototype.paticas.domain.repositories.ShelterRepository;
 import com.paticasprototype.paticas.domain.repositories.VolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,5 +60,9 @@ public class VolunteerUseCase {
             return true;
         }
         return false;
+    }
+
+    public Page<VolunteerDTO> getVolunteersByShelterId(Long shelterId, Pageable pageable) {
+        return volunteerRepository.findByShelterId(shelterId, pageable).map(VolunteerMapper::toDTO);
     }
 }

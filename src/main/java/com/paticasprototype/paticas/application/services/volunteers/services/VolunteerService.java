@@ -3,6 +3,8 @@ package com.paticasprototype.paticas.application.services.volunteers.services;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
 import com.paticasprototype.paticas.domain.usecase.VolunteerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,5 +34,9 @@ public class VolunteerService {
 
     public boolean deleteVolunteer(Long id) {
         return volunteerUseCase.deleteVolunteer(id);
+    }
+
+    public Page<VolunteerDTO> getVolunteersByShelterId(Long shelterId, Pageable pageable) {
+        return volunteerUseCase.getVolunteersByShelterId(shelterId,pageable);
     }
 }

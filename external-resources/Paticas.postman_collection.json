@@ -115,22 +115,22 @@
 								{
 									"key": "profileImage",
 									"type": "file",
-									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/profileImage.png"
+									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/external-resources/optimized-images-for-testing/profileImage.png"
 								},
 								{
 									"key": "imageCarousel1",
 									"type": "file",
-									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/imageCarousel1.png"
+									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/external-resources/optimized-images-for-testing/imageCarousel1.png"
 								},
 								{
 									"key": "imageCarousel2",
 									"type": "file",
-									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/imageCarousel2.png"
+									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/external-resources/optimized-images-for-testing/imageCarousel2.png"
 								},
 								{
 									"key": "imageCarousel3",
 									"type": "file",
-									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/imageCarousel3.png"
+									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/external-resources/optimized-images-for-testing/imageCarousel3.png"
 								},
 								{
 									"key": "name",
@@ -682,13 +682,39 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"profileImage\": \"My image\",\r\n  \"fullName\": \"Pablo Muñoz Martínez\",\r\n  \"phone\": \"123456789\",\r\n  \"email\": \"my@email.com\",\r\n  \"availability\": 2,\r\n  \"shelterId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profileImage",
+									"type": "file",
+									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/external-resources/optimized-images-for-testing/imageCarousel1.png"
+								},
+								{
+									"key": "fullName",
+									"value": "Pablo Muñoz Martínez",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "my@email.com",
+									"type": "text"
+								},
+								{
+									"key": "availability",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "shelterId",
+									"value": "1",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{BasePathApiReal}}/api/volunteers",
@@ -709,23 +735,54 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"id\": 2,\r\n  \"profileImage\": \"My image 2\",\r\n  \"fullName\": \"Name modified\",\r\n  \"phone\": \"123456789 modified\",\r\n  \"email\": \"my@email.com modified \",\r\n  \"availability\": 9,\r\n  \"shelterId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profileImage",
+									"type": "file",
+									"src": "/C:/Users/Pablo/Elithel/Prototypes/Optimized images for make requests/external-resources/optimized-images-for-testing/imageCarousel3.png"
+								},
+								{
+									"key": "fullName",
+									"value": "Pablo Muñoz Martínez RE",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123456789 re",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "my@email.com re",
+									"type": "text"
+								},
+								{
+									"key": "availability",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "shelterId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "{{BasePathApiReal}}/api/volunteers/2",
+							"raw": "{{BasePathApiReal}}/api/volunteers/5",
 							"host": [
 								"{{BasePathApiReal}}"
 							],
 							"path": [
 								"api",
 								"volunteers",
-								"2"
+								"5"
 							]
 						}
 					},

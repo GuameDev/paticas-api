@@ -1,9 +1,10 @@
 package com.paticasprototype.paticas.application.services.paticas.dtos;
+
 import com.paticasprototype.paticas.application.services.shelters.dtos.ShelterDTO;
 
 import java.util.Date;
 
-public class PetDTO {
+public class GetPetByIdResponse {
     private Long id;
     private String profileImage;
     private String imageCarousel1;
@@ -19,10 +20,7 @@ public class PetDTO {
     private boolean goodWithKids;
     private boolean goodWithDogs;
     private boolean goodWithCats;
-    private Long shelterId;
-
-
-    // Getters and Setters
+    private ShelterDTO shelter;
 
     public Long getId() {
         return id;
@@ -144,11 +142,11 @@ public class PetDTO {
         this.goodWithCats = goodWithCats;
     }
 
-    public Long getShelterId() {
-        return shelterId;
+    public ShelterDTO getShelter() {
+        return shelter;
     }
 
-    public void setShelterId(Long shelterId) {
-        this.shelterId = shelterId;
+    public void setShelter(ShelterDTO shelter) {
+        this.shelter = shelter;
     }
 }

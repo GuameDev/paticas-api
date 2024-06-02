@@ -1,18 +1,21 @@
 package com.paticasprototype.paticas.application.services.paticas.dtos;
-import com.paticasprototype.paticas.application.services.shelters.dtos.ShelterDTO;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
-public class PetDTO {
+public class UpdatePetRequest {
     private Long id;
-    private String profileImage;
-    private String imageCarousel1;
-    private String imageCarousel2;
-    private String imageCarousel3;
+    private MultipartFile profileImage;
+    private MultipartFile imageCarousel1;
+    private MultipartFile imageCarousel2;
+    private MultipartFile imageCarousel3;
     private String name;
     private String location;
     private String gender;
     private int size;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
     private String species;
     private String description;
@@ -20,7 +23,6 @@ public class PetDTO {
     private boolean goodWithDogs;
     private boolean goodWithCats;
     private Long shelterId;
-
 
     // Getters and Setters
 
@@ -32,35 +34,35 @@ public class PetDTO {
         this.id = id;
     }
 
-    public String getProfileImage() {
+    public MultipartFile getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(String profileImage) {
+    public void setProfileImage(MultipartFile profileImage) {
         this.profileImage = profileImage;
     }
 
-    public String getImageCarousel1() {
+    public MultipartFile getImageCarousel1() {
         return imageCarousel1;
     }
 
-    public void setImageCarousel1(String imageCarousel1) {
+    public void setImageCarousel1(MultipartFile imageCarousel1) {
         this.imageCarousel1 = imageCarousel1;
     }
 
-    public String getImageCarousel2() {
+    public MultipartFile getImageCarousel2() {
         return imageCarousel2;
     }
 
-    public void setImageCarousel2(String imageCarousel2) {
+    public void setImageCarousel2(MultipartFile imageCarousel2) {
         this.imageCarousel2 = imageCarousel2;
     }
 
-    public String getImageCarousel3() {
+    public MultipartFile getImageCarousel3() {
         return imageCarousel3;
     }
 
-    public void setImageCarousel3(String imageCarousel3) {
+    public void setImageCarousel3(MultipartFile imageCarousel3) {
         this.imageCarousel3 = imageCarousel3;
     }
 

@@ -1,6 +1,7 @@
 package com.paticasprototype.paticas.infrastructure.controllers;
 
 import com.paticasprototype.paticas.application.services.paticas.dtos.CreatePetRequest;
+import com.paticasprototype.paticas.application.services.paticas.dtos.GetPetByIdResponse;
 import com.paticasprototype.paticas.application.services.paticas.dtos.PetDTO;
 import com.paticasprototype.paticas.application.services.paticas.dtos.UpdatePetRequest;
 import com.paticasprototype.paticas.application.services.paticas.mapper.PetMapper;
@@ -34,9 +35,9 @@ public class PetController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PetDTO> getPetById(@PathVariable Long id) {
+    public ResponseEntity<GetPetByIdResponse> getPetById(@PathVariable Long id) {
         Optional<Pet> pet = petService.getPetById(id);
-        return pet.map(p -> ResponseEntity.ok(PetMapper.toDTO(p)))
+        return pet.map(p -> ResponseEntity.ok(PetMapper.toDetailDTO(p)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 

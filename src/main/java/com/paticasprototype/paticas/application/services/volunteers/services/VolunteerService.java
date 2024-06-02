@@ -1,6 +1,7 @@
 package com.paticasprototype.paticas.application.services.volunteers.services;
 
 import com.paticasprototype.paticas.application.services.volunteers.dtos.CreateVolunteerRequest;
+import com.paticasprototype.paticas.application.services.volunteers.dtos.UpdateVolunteerRequest;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
 import com.paticasprototype.paticas.domain.usecase.VolunteerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class VolunteerService {
         return volunteerUseCase.createVolunteer(volunteerDTO);
     }
 
-    public Optional<VolunteerDTO> updateVolunteer(Long id, VolunteerDTO volunteerDTO) {
+    public Optional<VolunteerDTO> updateVolunteer(Long id, UpdateVolunteerRequest volunteerDTO) {
         return volunteerUseCase.updateVolunteer(id, volunteerDTO);
     }
 

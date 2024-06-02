@@ -2,7 +2,8 @@ package com.paticasprototype.paticas.application.services.volunteers.dtos;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class CreateVolunteerRequest {
+public class UpdateVolunteerRequest {
+    private Long id;
     private MultipartFile profileImage;
     private String fullName;
     private String phone;
@@ -11,6 +12,15 @@ public class CreateVolunteerRequest {
     private Long shelterId;
 
     // Getters and Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public MultipartFile getProfileImage() {
         return profileImage;
     }
@@ -59,4 +69,3 @@ public class CreateVolunteerRequest {
         this.shelterId = shelterId;
     }
 }
-

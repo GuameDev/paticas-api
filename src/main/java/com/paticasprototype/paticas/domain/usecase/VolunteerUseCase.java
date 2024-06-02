@@ -2,6 +2,7 @@ package com.paticasprototype.paticas.domain.usecase;
 
 import com.paticasprototype.paticas.application.services.paticas.mapper.PetMapper;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.CreateVolunteerRequest;
+import com.paticasprototype.paticas.application.services.volunteers.dtos.UpdateVolunteerRequest;
 import com.paticasprototype.paticas.application.services.volunteers.dtos.VolunteerDTO;
 import com.paticasprototype.paticas.application.services.volunteers.mapper.CreateVolunteerMapper;
 import com.paticasprototype.paticas.application.services.volunteers.mapper.VolunteerMapper;
@@ -47,9 +48,15 @@ public class VolunteerUseCase {
         return VolunteerMapper.toDTO(volunteerRepository.save(volunteer));
     }
 
-    public Optional<VolunteerDTO> updateVolunteer(Long id, VolunteerDTO volunteerDTO) {
+    public Optional<VolunteerDTO> updateVolunteer(Long id, UpdateVolunteerRequest volunteerDTO)  {
         return volunteerRepository.findById(id).map(existingVolunteer -> {
-            Volunteer volunteer = VolunteerMapper.toEntity(volunteerDTO);
+            CreateVolunteerMapper volunteerMapper = new CreateVolunteerMapper();
+            Volunteer volunteer = null;
+            try {
+                volunteer = volunteerMapper.toEntity(volunteerDTO);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             volunteer.setId(existingVolunteer.getId());
             Shelter shelter = shelterRepository.findById(volunteerDTO.getShelterId())
                     .orElseThrow(() -> new RuntimeException("Shelter not found"));
